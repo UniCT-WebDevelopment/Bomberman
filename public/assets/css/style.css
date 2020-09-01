@@ -1,0 +1,211 @@
+body {
+    padding-bottom: 50px;
+}
+
+#loginModal .modal-content, #enterRoom .modal-content {
+    border-radius: 25px;
+}
+
+#loginModal .modal-content .modal-header, #enterRoom .modal-content .modal-header {
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+}
+
+#carouselAvatar {
+    height: 100px;
+    width: 100px;
+}
+
+#carouselAvatar .carousel-inner img {
+    height: 100px;
+    width: 100px;
+}
+
+.timePanel {
+    display: none;
+}
+
+#gameSetup {
+    display: none;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+#gameSetup *{
+    font-size: 1em;
+}
+
+.game {
+    display: none;
+}
+
+.header-game>.text-white {
+    text-align: center;
+    font-weight: bolder;
+    position: fixed;
+    top: 0;
+    left: 70px;
+    right: 70px;
+    height: 20px;
+    font-size: 20px;
+}
+
+canvas {
+    display: block;
+    margin: 0;
+    padding: 50px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.volume {
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    z-index: 9999;
+}
+
+#icon-volume {
+    font-size: 50px !important;
+    cursor: pointer;
+}
+
+#range-volume {
+    display: none;
+    margin-top:20px;
+}
+
+input[type='range'] {
+    overflow: hidden;
+    -webkit-appearance: none;
+    background-color: #000000;
+    height: 100%;
+}
+
+input[type='range']::-webkit-slider-runnable-track {
+    height: 10px;
+    -webkit-appearance: none;
+    color: #43e5f7;
+    margin-top: -1px;
+}
+
+input[type='range']::-webkit-slider-thumb {
+    width: 10px;
+    -webkit-appearance: none;
+    height: 10px;
+    cursor: ew-resize;
+    background: #0275d8;
+    box-shadow: -80px 0 0 80px #43e5f7;
+}
+
+.icon-exit {
+    position: fixed;
+    left: 20px;
+    top: 20px;
+    font-size: 50px !important;
+    cursor: pointer;
+    z-index: 9999;
+}
+
+.controls {
+    display: none;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 300px;
+    position: fixed;
+}
+
+.controls span {
+    padding: 0;
+}
+
+.controls .col-4 {
+    padding: 0;
+}
+
+.controls .fa {
+    font-size: 50px !important;
+}
+
+.fa:active {
+    color: white !important;
+}
+
+#chevron-up {
+    margin-bottom: 50px;
+}
+
+#chevron-up {
+    position: fixed;
+    left: 115px;
+    bottom: 130px;
+}
+
+#chevron-down {
+    position: fixed;
+    left: 115px;
+    bottom: 20px;
+}
+
+#chevron-right {
+    position: fixed;
+    left: 185px;
+    bottom: 100px;
+}
+
+#chevron-left {
+    position: fixed;
+    left: 50px;
+    bottom: 100px;
+}
+
+#bomb-key {
+    position: fixed;
+    right: 50px;
+    bottom: 150px;
+}
+
+.room-item > * {
+    margin: 5px 0 !important;
+}
+
+#cardPlaceSelector .card-body {
+    padding: 0 !important;
+}
+
+#cardPlaceSelector .btn {
+    margin: 20px !important;
+    padding: 0 !important;
+    height: 50px;
+    width: 50px;
+}
+
+#cardPlaceSelector .btn-light {
+    background-color: lightslategray;
+}
+
+.picked-color {
+    background-color: red;
+}
+
+.your-color {
+    display: none;
+}
+
+.settingButton {
+    margin: 0;
+    padding: 0;
+}
+
+input[type="number"] {
+    text-align: center;
+}
+
+input[type='number']::-webkit-inner-spin-button, 
+input[type='number']::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    margin: 0;
+}

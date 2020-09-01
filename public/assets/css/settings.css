@@ -1,0 +1,44 @@
+#gameSetup .card {
+    margin-top: 50px;
+    border-radius: 25px;
+}
+
+#gameSetup .card-header {
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+}
+
+#gameSetup .card input {
+    text-align: center;
+    border: 0px;
+    background-color: white;
+    margin-top: 5px;;
+}
+
+#gameSetup .not-ready {
+    color: red;
+    font-size: 0.8em;
+}
+
+#gameSetup .ready {
+    color: green;
+    font-size: 0.8em;
+}
+
+#gameSetup .kick-user {
+    color: black;
+    cursor: pointer;
+}
+
+#gameSetup .btn {
+    margin-top: 25px;
+    border-radius: 25px;
+}
+
+#stageSelector {
+    margin-top: 50px;
+}
+
+#gameCard {
+    display: none;
+}

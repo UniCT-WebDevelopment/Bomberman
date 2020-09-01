@@ -1,0 +1,39 @@
+{
+  "name": "project_web_programming",
+  "version": "1.0.0",
+  "description": "Bomberman-like videogame as a Node.js application.",
+  "main": "main.js",
+  "scripts": {
+    "start": "node .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://Mirkesx@github.com/Mirkesx/project_web_programming.git"
+  },
+  "keywords": [
+    "Bomberman",
+    "Node.js",
+    "Videogame",
+    "app"
+  ],
+  "author": "Marco Cavalli",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mirkesx/project_web_programming/issues"
+  },
+  "homepage": "https://github.com/Mirkesx/project_web_programming#readme",
+  "dependencies": {
+    "@popperjs/core": "^2.4.4",
+    "bootstrap": "^4.5.0",
+    "express": "^4.17.1",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.5.1",
+    "jquery-ui": "^1.12.1",
+    "jquery-ui-css": "^1.11.5",
+    "phaser": "^3.23.0",
+    "popper.js": "^1.16.1",
+    "socket.io": "^2.3.0",
+    "underscore": "^1.10.2"
+  }
+}

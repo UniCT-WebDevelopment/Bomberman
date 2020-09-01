@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Bomberman</title>
+
+    <!-- COMPONENTS CSS-->
+    <link rel="stylesheet" href="/public/assets/css/style.css">
+    <link rel="stylesheet" href="/public/assets/css/chat.css">
+    <link rel="stylesheet" href="/public/assets/css/settings.css">
+
+    <!-- MODULES CSS -->
+    <link rel="stylesheet" href="/node_modules/jquery-ui-css/jquery-ui.min.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="/node_modules/font-awesome/css/font-awesome.min.css">
+</head>
+
+<body background="/public/assets/img/background_bomberman.png" style="background-position: center top;">
+
+    <div class="lobby">
+        <div class="fa fa-4 fa-sign-out icon-exit"></div>
+        <div id="loginModal" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-lg" role="content">
+                <div class="modal-content">
+                    <div class="modal-header btn-primary">
+                        <h4 class="modal-title">Login</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row row-content align-items-center">
+                            <div class="form-group col-12">
+                                <label class="sr-only" for="nickname">Nickname</label>
+                                <input type="text" class="form-control form-control-sm mr-1" id="nickname"
+                                    placeholder="Enter a nickname">
+                            </div>
+                            <div class="form-group col-12 d-flex justify-content-center">
+                                <label class="sr-only" for="avatar">Avatar</label>
+                                <div id="carouselAvatar" class="carousel">
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active" data-avatar="1">
+                                            <img class="d-block w-100" src="/public/assets/img/avatar/avatar_1.png"
+                                                alt="First slide">
+                                        </div>
+                                        <div class="carousel-item" data-avatar="2">
+                                            <img class="d-block w-100" src="/public/assets/img/avatar/avatar_2.png"
+                                                alt="Second slide">
+                                        </div>
+                                        <div class="carousel-item" data-avatar="3">
+                                            <img class="d-block w-100" src="/public/assets/img/avatar/avatar_3.png"
+                                                alt="Third slide">
+                                        </div>
+                                        <div class="carousel-item" data-avatar="4">
+                                            <img class="d-block w-100" src="/public/assets/img/avatar/avatar_4.png"
+                                                alt="Forth slide">
+                                        </div>
+                                        <div class="carousel-item" data-avatar="5">
+                                            <img class="d-block w-100" src="/public/assets/img/avatar/avatar_5.png"
+                                                alt="Fifth slide">
+                                        </div>
+                                    </div>
+                                    <span class="carousel-control-prev" id="prev-avatar" role="button"
+                                        data-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </span>
+                                    <span class="carousel-control-next" id="next-avatar" role="button"
+                                        data-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-content align-items-center">
+                            <div class="col-12 d-flex justify-content-center">
+                                <button type="button" id="loads-room"
+                                    class="btn btn-primary btn-sm m-1 p-2">Login</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="enterRoom" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-lg" role="content">
+                <div class="modal-content">
+                    <div class="modal-header btn-primary">
+                        <h4 class="modal-title">Create or Join a Room</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row row-content align-items-center">
+                            <div class="form-group col-12">
+                                <label class="sr-only" for="roomName">Room Name</label>
+                                <input type="text" class="form-control form-control-sm mr-1" id="roomName"
+                                    placeholder="Room Name">
+                            </div>
+                        </div>
+                        <div class="row row-content align-items-center">
+                            <div class="col-12 d-flex justify-content-center">
+                                <button type="button" id="join-room" class="btn btn-primary btn-sm m-1 p-2">Create / Join</button>
+                            </div>
+                        </div>
+                        <hr class="col-12">
+                        <div class="row row-content align-items-center">
+                            <div class="col-12 d-flex justify-content-center">
+                                <h2>List of rooms:</h2>
+                            </div>
+                        </div>
+                        <div class="row row-content align-items-center room-item" id="room-list">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container" id="gameSetup">
+            <div class="fa fa-4 fa-sign-out icon-exit" id='exit-room'></div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-12 justify-content-center">
+                            <button class="btn btn-danger text-white w-100" id="buttonReady">
+                                <h3>Ready</h4>
+                            </button>
+                        </div>
+                        <div class="col-12 justify-content-center">
+                            <button class="btn btn-success text-white w-100" id="buttonStart">
+                                <h3>Start</h4>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card text-center" id="settingsGame">
+                                <div class="card-header bg-primary text-white">
+                                    <p class="card-text">
+                                    <h4>Settings</h4>
+                                    </p>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row row-content align-items-center">
+                                        <span class="col-12 col-lg-5">
+                                            <h5>Bombs</h5>
+                                        </span>
+                                        <button
+                                            class="offset-1 col-2 col-lg-1 fa fa-arrow-down p-0 settingButton"></button>
+                                        <input class="col-6 col-lg-3" type="text" id="numberBombs" value="1" min="1"
+                                            max="5" disabled>
+                                        <button class="col-2 col-lg-1 fa fa-arrow-up p-0 settingButton"></button>
+                                    </div>
+                                    <div class="row row-content align-items-center">
+                                        <span class="col-12 col-lg-5">
+                                            <h5>Flames</h5>
+                                        </span>
+                                        <button
+                                            class="offset-1 col-2 col-lg-1 fa fa-arrow-down p-0 settingButton"></button>
+                                        <input class="col-6 col-lg-3" type="text" id="numberFlames" value="2" min="1"
+                                            max="5" disabled>
+                                        <button class="col-2 col-lg-1 fa fa-arrow-up p-0 settingButton"></button>
+                                    </div>
+                                    <div class="row row-content align-items-center">
+                                        <span class="col-12 col-lg-5">
+                                            <h5>Speed</h5>
+                                        </span>
+                                        <button
+                                            class="offset-1 col-2 col-lg-1 fa fa-arrow-down p-0 settingButton"></button>
+                                        <input class="col-6 col-lg-3" type="text" id="numberSpeed" value="1" min="1"
+                                            max="5" disabled>
+                                        <button class="col-2 col-lg-1 fa fa-arrow-up p-0 settingButton"></button>
+                                    </div>
+                                    <div class="row timePanel">
+                                        <span class="col-12">
+                                            <h5>Time</h5>
+                                        </span>
+                                        <div class="col-12">
+                                            <div class="row" id="settingsTimer">
+                                                <div class="col-12 col-md-6 p-sm-0">
+                                                    Min. <input type="text" id="settingsMinutes" value="3" min="1"
+                                                        max="5">
+                                                </div>
+                                                <div class="col-12 col-md-6 p-sm-0">
+                                                    Sec. <input type="text" id="settingsSeconds" value="00" min="0"
+                                                        max="59">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card text-center" id="cardPlayersList">
+                                <div class="card-header bg-primary text-white">
+                                    <p class="card-text">
+                                    <h4>Users online</h4>
+                                    </p>
+                                </div>
+                                <div class="card-body">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card text-center" id="cardPlaceSelector">
+                                <div class="card-header bg-primary text-white">
+                                    <p class="card-text">
+                                    <h4>Pick/Change color and starting position</h4>
+                                    </p>
+                                </div>
+                                <div class="card-body">
+                                    <div class="col-12 colors-circle">
+                                        <span><button class="btn btn-light" data-color="gray"> </button></span>
+                                        <span><button class="btn btn-dark" data-color="black"> </button></span>
+                                    </div>
+                                    <div class="col-12 colors-circle">
+                                        <span><button class="btn btn-primary" data-color="blue"> </button></span>
+                                        <span><button class="btn btn-danger" data-color="red"> </button></span>
+                                    </div>
+                                    <div class="col-12 your-color">
+                                        <span class="btn"></span>
+                                        <p></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-8" id="stageSelector">
+                    <label class="sr-only" for="stage">Stage</label>
+                    <div id="carouselStage" class="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active" data-stage="1">
+                                <img class="d-block w-100" src="/public/assets/img/stage/stage_1.png" alt="First slide">
+                            </div>
+                            <!-- <div class="carousel-item" data-stage="2">
+                            <img class="d-block w-100" src="/public/assets/img/stage/stage_2.png" alt="Second slide">
+                        </div> -->
+                        </div>
+                        <span class="carousel-control-prev" id="prev-stage" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </span>
+                        <span class="carousel-control-next" id="next-stage" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="game">
+        <div class="header-game">
+            <div class="volume">
+                <div class="fa fa-4 fa-volume-up" id="icon-volume"></div>
+                <input type="range" value="0.2" min="0" max="1" id="range-volume" step='.001'>
+            </div>
+            <span class="text-white">Use arrows to move and SPACE to place a bomb.</span>
+            <div class="fa fa-4 fa-sign-out icon-exit" id='exit-game'></div>
+        </div>
+        <div class=" canvasContainer">
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="offset-3 col-6">
+                    <div id="gameCard">
+                        <div class="card text-center">
+                            <div class="card-header bg-primary text-white">
+                                <p class="card-text">Please Wait</span>
+                            </div>
+                            <div class="card-body">
+                                <div class="col-12">
+                                    <span>Waiting for all players to load the assets.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="chat">
+        <div class="chat_panel">
+            <div class="card">
+                <div class="card-header">
+                    <span class="pull-left">Chat</span>
+                    <span class="pull-right fa fa-users fa-2" id="usersList"></span>
+                </div>
+                <div class="messages">
+                    <div class="card-body">
+                        <ul class="chat_messages"></ul>
+                    </div>
+                </div>
+
+                <div class="card-footer">
+                    <div class="input-group">
+                        <input id="btn-input" type="text" class="message_input form-control input-sm"
+                            placeholder="Type your message here...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-warning send_message" id="btn-chat">Send</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="chat_icon">
+            <img src="/public/assets/img/chat_icon.png">
+            <span id="unread-messages">0</span>
+        </div>
+    </div>
+
+    <div class='container controls'>
+        <div class='row'>
+            <div class="col-8">
+                <div class="row row-content align-items-center">
+                    <div class="col-4">
+                        <span class="col-12 fa fa-chevron-left" id="chevron-left"></span>
+                    </div>
+                    <div class='col-4'>
+                        <span class="col-12 fa fa-chevron-up" id="chevron-up"></span>
+                        <span class="col-12 fa fa-chevron-down" id="chevron-down"></span>
+                    </div>
+                    <div class="col-4">
+                        <span class="col-12 fa fa-chevron-right" id="chevron-right"></span>
+                    </div>
+                </div>
+            </div>
+            <div class='col-2'>
+                <span class="fa fa-bomb" id="bomb-key"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODULES -->
+    <script src="/node_modules/underscore/underscore-min.js"></script>
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/jquery-ui-css/jquery-ui.min.js"></script>
+    <script src="/node_modules/popper.js/dist/umd/popper.min.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/node_modules/phaser/dist/phaser.js"></script>
+
+    <!-- COMPONENTS -->
+    <script src="/public/assets/js/index.js"></script>
+    <script src="/public/assets/js/chat.js"></script>
+    <script src="/public/assets/js/settings.js"></script>
+    <script src="/public/assets/js/animations.js"></script>
+    <script src="/public/assets/js/sprites.js"></script>
+    <script src="/public/assets/js/game.js"></script>
+</body>
+
+</html>
